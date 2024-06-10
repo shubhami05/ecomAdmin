@@ -2,11 +2,14 @@
 
 import React from 'react'
 import Layout from '../layout'
+import Link from 'next/link'
 
 const page = () => {
   return (
-    <Layout className='flex bg-slate-200 rounded-xl text-slate-900 font-bold min-h-screen p-5 w-screen justify-between'>
-      Products
+    <Layout >
+      <div className='products-section'>
+        <Link className='h-12 p-3 rounded-lg text-slate-50  bg-slate-800 hover:bg-slate-700 transition-colors' href={'/products/new'}>Add new products</Link>
+      </div>
     </Layout>
   )
 }

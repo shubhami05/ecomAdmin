@@ -26,7 +26,7 @@ export default function Layout({ children }: any) {
       <body className={inter.className}>
         <div className="flex min-h-screen bg-slate-800">
           <Navbar />
-          <div className='flex bg-slate-200 rounded-xl text-slate-900 font-bold min-h-screen p-5 w-screen justify-between'>
+          <div className=' bg-slate-200 rounded-xl text-slate-900 font-bold min-h-screen p-5 w-screen'>
             {children}
           </div>
         </div>

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+input{
+  @apply border-2 border-slate-700 rounded-md px-1;
+}
+input:focus{
+  @apply border-slate-900
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
