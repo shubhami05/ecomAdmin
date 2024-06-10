@@ -1,22 +1,19 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Layout from './layout';
 
 const page = () => {
-  const { data: session } = useSession()
+  const {data:session} = useSession()
   return (
-    <div className='flex bg-slate-200 rounded-lg text-slate-900 font-bold min-h-screen p-5 w-screen justify-between'>
+    <Layout>
       <div>
         Hello, {session?.user?.name}
       </div>
-      <div className='flex gap-2 h-12 items-center bg-slate-800 ps-3  py-3 text-slate-200 rounded-full'>
-        <span >
-          {session?.user?.name}
-        </span>
+      <div className='flex h-14 items-center bg-green-400 p-1 text-slate-200 rounded-full'>
         <img src={`${session?.user?.image}`} alt='This is you' className='rounded-full' width={50} height={50} />
       </div>
-
-    </div>
+    </Layout>
   )
 }
 

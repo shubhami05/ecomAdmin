@@ -1,12 +1,13 @@
 'use client'
 
 import React from 'react'
+import Layout from '../layout'
 
 const page = () => {
   return (
-    <div className='bg-slate-200 text-slate-900 min-h-screen w-screen'>
+    <Layout className='flex bg-slate-200 rounded-xl text-slate-900 font-bold min-h-screen p-5 w-screen justify-between'>
       Products
-    </div>
+    </Layout>
   )
 }
 

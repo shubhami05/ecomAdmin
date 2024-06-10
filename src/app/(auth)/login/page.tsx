@@ -10,7 +10,7 @@ export default function Home() {
     router.replace('/')
   }
   return (
-    <main className="flex flex-col gap-4 min-h-screen w-100 items-center justify-center  p-24 bg-slate-900">
+    <main className="flex flex-col gap-4 min-h-screen w-100 items-center justify-center  p-24 from-slate-950 to-slate-800 bg-gradient-to-tl">
       <div className="text-center container-xxl p-8 border  rounded-lg">
         <button onClick={() => signIn('google')} className="bg-slate-200 hover:bg-slate-50 text-slate-900 p-2 px-4 rounded-md font-bold flex gap-2 transition-colors ">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
