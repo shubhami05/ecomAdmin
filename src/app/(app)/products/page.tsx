@@ -8,7 +8,7 @@ const page = () => {
   return (
     <Layout >
       <div className='products-section'>
-        <Link className='h-12 p-3 rounded-lg text-slate-50  bg-slate-800 hover:bg-slate-700 transition-colors' href={'/products/new'}>Add new products</Link>
+        <Link className='btn-primary' href={'/products/new'}>Add new product</Link>
       </div>
     </Layout>
   )
