@@ -1,5 +1,6 @@
 'use client'
 import Navbar from '@/components/Navbar';
+// import { Toaster } from '@/components/ui/toaster';
 import { useSession } from 'next-auth/react'
 import { Inter } from 'next/font/google';
 import React, { useEffect, useState } from 'react'

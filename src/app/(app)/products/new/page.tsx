@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Layout from '../../layout'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import { useToast } from "@/components/ui/use-toast"
+
 
 const page = () => {
     const [title, setTitle] = useState('')
@@ -10,6 +12,7 @@ const page = () => {
     const [price, setPrice] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const router = useRouter();
+    const {toast} = useToast()
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -19,7 +22,7 @@ const page = () => {
             console.log(data)
             const response = await axios.post('/api/products', data)
             if (response.data.success) {
-                alert("Product added")
+                
                 router.push('/products')
             }
 
@@ -34,12 +37,12 @@ const page = () => {
 
     return (
         <Layout>
-            <div className='new-product-section'>
+            <div className='new-product-section container '>
                 <h1 className='text-xl mb-5'>
                     Enter details of new products
                 </h1>
 
-                <form onSubmit={handleSubmit} className='form-section'>
+                <form onSubmit={handleSubmit} className='form-section p-5'>
                     <label >Product name</label>
                     <input name='pname' type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder='Enter product name' />
                     <label>Description</label>
