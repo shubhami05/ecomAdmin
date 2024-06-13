@@ -38,10 +38,10 @@ const page = () => {
     return (
         <Layout>
             <div className='new-product-section container '>
-                <h1 className='text-xl mb-5'>
+                <h1 className='text-2xl font-bold mb-5'>
                     Enter details of new products
                 </h1>
-
+                
                 <form onSubmit={handleSubmit} className='form-section p-5'>
                     <label >Product name</label>
                     <input name='pname' type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder='Enter product name' />

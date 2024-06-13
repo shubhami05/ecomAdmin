@@ -16,8 +16,8 @@ export default function Layout({ children }: any) {
   if (isLoading) {
     return (
 
-      <div className={"item"}>
-        <Loader type="loader-default" color={'black'} bgColor={'black'} size={100} />
+      <div className={"item bg-slate-300 w-full h-screen flex items-center justify-center"}>
+        <Loader />
       </div>
 
     )
