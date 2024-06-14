@@ -129,3 +129,111 @@ export async function GET(request: NextRequest) {
         )
     }
 }
+
+export async function PUT(request: NextRequest) {
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+        return Response.json(
+            {
+                success: false,
+                message: "Not authentiated"
+            },
+            {
+                status: 401
+            }
+        )
+    }
+    await dbConnect();
+    try {
+        const { id, productData } = await request.json();
+        const { title, desc, price } = productData;
+        const pid = id[0];
+
+        await Product.updateOne(
+            {
+                _id: ObjectId.createFromHexString(pid)
+            },
+            {
+                $set: {
+                    title: title,
+                    desc: desc,
+                    price: price
+                }
+            }
+        )
+        return Response.json(
+            {
+                success: true,
+                message: "Product Details is updates successfully!"
+            },
+            {
+                status: 200
+            }
+        )
+    } catch (error) {
+        console.log(error)
+        return Response.json(
+            {
+                success: false,
+                message: "Something Went wrong!"
+            },
+            {
+                status: 500
+            }
+        )
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user) {
+        return Response.json(
+            {
+                success: false,
+                message: "Not authentiated"
+            },
+            {
+                status: 401
+            }
+        )
+    }
+    await dbConnect();
+    try {
+        const data = await request.json();
+        const id = data.productToDelete;
+        const productExist = await Product.findOne({ _id: ObjectId.createFromHexString(id) });
+        if (productExist) {
+            await Product.deleteOne({ _id: ObjectId.createFromHexString(id) });
+            return Response.json(
+                {
+                    success: true,
+                    message: "Product deleted successfully"
+                },
+                {
+                    status: 200
+                }
+            )
+        }
+        return Response.json(
+            {
+                success: false,
+                message: 'Product does not exist!'
+            },
+            {
+                status: 400
+            }
+        )
+    }
+    catch (error) {
+        console.log(error);
+        return Response.json(
+            {
+                success: false,
+                message: "Something went wrong"
+            },
+            {
+                status: 500
+            }
+        )
+    }
+}

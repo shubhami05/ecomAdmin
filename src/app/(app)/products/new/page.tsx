@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Layout from '../../layout'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { useToast } from "@/components/ui/use-toast"
+import {toast} from 'react-hot-toast'
 
 
 const page = () => {
@@ -12,7 +12,6 @@ const page = () => {
     const [price, setPrice] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const router = useRouter();
-    const {toast} = useToast()
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -22,13 +21,13 @@ const page = () => {
             console.log(data)
             const response = await axios.post('/api/products', data)
             if (response.data.success) {
-                
+                toast.success(response.data.message)
                 router.push('/products')
             }
 
-
         } catch (error) {
             console.log("Error in new product adding", error)
+            toast.error('Something went wrong')
         }
         finally {
             setIsLoading(false)

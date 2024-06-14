@@ -1,10 +1,10 @@
 'use client'
 import Navbar from '@/components/Navbar';
-// import { Toaster } from '@/components/ui/toaster';
 import { useSession } from 'next-auth/react'
 import { Inter } from 'next/font/google';
 import React, { useEffect, useState } from 'react'
 import Loader from "react-js-loader";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function Layout({ children }: any) {
@@ -27,6 +27,7 @@ export default function Layout({ children }: any) {
       <body className={inter.className}>
         <div className="flex min-h-screen bg-slate-800">
           <Navbar />
+          <Toaster position="top-right" />
           <div className=' bg-slate-200 rounded-xl text-slate-900 font-bold min-h-screen p-5 w-screen'>
             {children}
           </div>
