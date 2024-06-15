@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         return Response.json(
             {
                 success: true,
-                message: "Product Added Successfully"
+                message: "Product has been Added Successfully"
             },
             {
                 status: 200
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
             return Response.json(
                 {
                     success: true,
-                    message: "Product fetched successfully",
+                    message: "Product has been fetched successfully",
                     productsData: product
                 },
                 {
@@ -164,7 +164,7 @@ export async function PUT(request: NextRequest) {
         return Response.json(
             {
                 success: true,
-                message: "Product Details is updates successfully!"
+                message: "Product has been updated successfully!"
             },
             {
                 status: 200
@@ -207,7 +207,7 @@ export async function DELETE(request: NextRequest) {
             return Response.json(
                 {
                     success: true,
-                    message: "Product deleted successfully"
+                    message: "Product has been deleted successfully"
                 },
                 {
                     status: 200

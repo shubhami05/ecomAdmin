@@ -8,6 +8,9 @@
   .btn-secondary{
     @apply bg-slate-900 text-slate-50 hover:bg-slate-800 px-3 py-3 rounded-lg transition-colors
   }
+  .btn-outline{
+    @apply bg-transparent hover:bg-slate-300 px-3 py-3 rounded-lg transition-colors
+  }
   input,textarea{
     @apply border-slate-500 focus:border-slate-900 transition-colors w-full rounded-md py-3 px-2 mb-4 shadow-md
   }

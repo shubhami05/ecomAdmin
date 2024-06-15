@@ -91,6 +91,7 @@ const page = () => {
               <label>Price (Rs.)</label>
               <input name='price' type="number" value={productData.price} onChange={handleChange} placeholder='Enter product name' />
               <button type='submit' className='btn-primary'>Save </button>
+              <button type='button' onClick={()=>router.replace('/products')} className='btn-outline mx-2'>Cancel</button>
             </form>
           ) : (<></>)}
 
