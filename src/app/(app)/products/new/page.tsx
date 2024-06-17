@@ -11,7 +11,7 @@ const page = () => {
     const [desc, setDesc] = useState('')
     const [price, setPrice] = useState('')
     const [images, setImages] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const router = useRouter();
 
 
@@ -36,6 +36,26 @@ const page = () => {
         }
     }
 
+
+    const handleFileChange = (e: any) => {
+        e.preventDefault();
+        const files = e.target?.files;
+        if (files?.length > 0) {
+            try {
+                const data = new FormData();
+                for (const file in files) {
+                    data.append('file', file)
+                }
+                const response = axios.post('/api/upload',data,{
+                    headers:{'Content-Type':'multipart/form-data'}
+                });
+                console.log(response);
+            } catch (error) {
+
+            }
+        }
+    }
+
     return (
         <Layout>
             <div className='new-product-section container '>
@@ -51,18 +71,32 @@ const page = () => {
                     <textarea name="desc" value={desc} onChange={e => setDesc(e.target.value)} placeholder='Description' required></textarea>
                     <label>Price (Rs.)</label>
                     <input name='price' type="number" value={price} onChange={e => setPrice(e.target.value)} placeholder='Enter product name' required />
-                    <label >Images</label>
-                    <div className='btn-primary flex justify-center items-center h-25 w-25'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-                        </svg>
+                    <div className='flex items-center gap-2 '>
 
-                        <div>
-                            Upload
-                        </div>
-                        <input title='images' type="file" className='hidden' />
+                        <label >Images: </label>
+                        <label className='btn-outline cursor-pointer flex gap-1 justify-center items-center h-25 w-25'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                            </svg>
+
+                            <div>
+                                Upload
+                            </div>
+                            <input title='images' type="file" className='hidden' onChange={handleFileChange} />
+                        </label>
                     </div>
-                    <button type='submit' className='btn-primary'>Save</button>
+                    <div className='image-container text-slate-800 mb-5'>
+                        {
+                            images.length > 0 ? (
+                                <>
+
+                                </>
+                            ) : (
+                                <h1 className='text-slate-600'>*No images Uploaded</h1>
+                            )
+                        }
+                    </div>
+                    <button type='submit' className={`btn-primary ${isLoading ? ('opacity-50 cursor-wait') : ('cursor-pointer opacity-100')}`} disabled={isLoading}>Save</button>
                     <button type='button' onClick={() => router.replace('/products')} className='btn-outline mx-2'>Cancel</button>
 
                 </form>
