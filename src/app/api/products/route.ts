@@ -20,11 +20,12 @@ export async function POST(request: NextRequest) {
     }
     await dbConnect();
     try {
-        const { title, desc, price } = await request.json();
+        const { title, desc, price ,fileUrl} = await request.json();
         const productDoc = await Product.create({
             title,
             desc,
-            price
+            price,
+            images:fileUrl
         })
         await productDoc.save();
         return Response.json(
