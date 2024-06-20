@@ -42,9 +42,9 @@ const page = () => {
         }
         try {
             setIsLoading(true)
-            const data = { title, desc, price,fileUrl }
+            const data = { title, desc, price, fileUrl }
             console.log(fileUrl)
-            fileUrl.map(async (url)=>{
+            fileUrl.map(async (url) => {
                 console.log(url)
                 const res = await edgestore.publicFiles.confirmUpload({
                     url,
@@ -92,7 +92,7 @@ const page = () => {
                     Enter details of new products
                 </h1>
 
-                <form onSubmit={(e)=>e.preventDefault()} className='form-section p-5'>
+                <form onSubmit={(e) => e.preventDefault()} className='form-section p-5'>
                     <label >Product name</label>
                     <input name='name' type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder='Enter product name' required />
                     <span id='namemsg'></span>
@@ -139,6 +139,7 @@ const page = () => {
                             setFileStates(files);
                         }}
                         onFilesAdded={async (addedFiles) => {
+                            setIsLoading(true);
                             setFileStates([...fileStates, ...addedFiles]);
                             await Promise.all(
                                 addedFiles.map(async (addedFileState) => {
@@ -164,8 +165,10 @@ const page = () => {
                                     } catch (err) {
                                         updateFileProgress(addedFileState.key, 'ERROR');
                                     }
-                                }),
+                                }
+                                ),
                             );
+                            setIsLoading(false);
                         }}
                     />
                     <button type='submit' onClick={handleSubmit} className={`btn-primary ${isLoading ? ('opacity-50 cursor-wait') : ('cursor-pointer opacity-100')}`} disabled={isLoading}>Save</button>

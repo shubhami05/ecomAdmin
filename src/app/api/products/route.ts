@@ -146,7 +146,7 @@ export async function PUT(request: NextRequest) {
     }
     await dbConnect();
     try {
-        const { id, productData } = await request.json();
+        const { id, productData,fileUrl } = await request.json();
         const { title, desc, price } = productData;
         const pid = id[0];
 
@@ -158,7 +158,8 @@ export async function PUT(request: NextRequest) {
                 $set: {
                     title: title,
                     desc: desc,
-                    price: price
+                    price: price,
+                    images:fileUrl
                 }
             }
         )
